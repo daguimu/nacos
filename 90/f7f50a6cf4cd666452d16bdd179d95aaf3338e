@@ -1,0 +1,11 @@
+sys/src/main/java/com/alibaba/nacos/sys/utils/DiskUtils.java
+  ai_agent 195-197,205
+sys/src/test/java/com/alibaba/nacos/sys/utils/DiskUtilsTest.java
+  ai_agent 31,34-35,37-41,463-536
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "90f7f50a6cf4cd666452d16bdd179d95aaf3338e",
+  "prompts": {}
+}
