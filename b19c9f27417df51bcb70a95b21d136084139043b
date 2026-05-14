@@ -1,0 +1,13 @@
+core/src/test/java/com/alibaba/nacos/core/monitor/MetricsMonitorTest.java
+  ai_agent 22
+naming/src/test/java/com/alibaba/nacos/naming/monitor/MetricsMonitorTest.java
+  ai_agent 24
+core/src/test/java/com/alibaba/nacos/core/monitor/NacosMeterRegistryCenterTest.java
+  ai_agent 24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "b19c9f27417df51bcb70a95b21d136084139043b",
+  "prompts": {}
+}
