@@ -1,0 +1,11 @@
+client/src/main/java/com/alibaba/nacos/client/config/impl/ConfigFuzzyWatchContext.java
+  ai_agent 530-531
+client/src/test/java/com/alibaba/nacos/client/config/impl/ConfigFuzzyWatchContextTest.java
+  ai_agent 1-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "16e3f70b4a62dcb900f6dc6882ffbb737ebec8a0",
+  "prompts": {}
+}
