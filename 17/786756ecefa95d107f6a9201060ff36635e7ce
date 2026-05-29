@@ -1,0 +1,11 @@
+naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java
+  ai_agent 237-239
+naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java
+  ai_agent 35,47,349-361
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "17786756ecefa95d107f6a9201060ff36635e7ce",
+  "prompts": {}
+}
