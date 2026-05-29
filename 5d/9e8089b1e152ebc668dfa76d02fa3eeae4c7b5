@@ -1,0 +1,11 @@
+config/src/main/java/com/alibaba/nacos/config/server/service/repository/extrnal/ExternalConfigInfoPersistServiceImpl.java
+  ai_agent 238-245
+config/src/test/java/com/alibaba/nacos/config/server/service/repository/extrnal/ExternalConfigInfoPersistServiceImplTest.java
+  ai_agent 446-520
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "5d9e8089b1e152ebc668dfa76d02fa3eeae4c7b5",
+  "prompts": {}
+}
