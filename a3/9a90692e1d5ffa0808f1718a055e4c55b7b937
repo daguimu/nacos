@@ -1,0 +1,15 @@
+core/src/main/java/com/alibaba/nacos/core/cluster/ServerMemberManager.java
+  ai_agent 295-300
+naming/src/test/java/com/alibaba/nacos/naming/healthcheck/v2/processor/TcpHealthCheckProcessorTest.java
+  ai_agent 1-172
+naming/src/main/java/com/alibaba/nacos/naming/healthcheck/v2/processor/TcpHealthCheckProcessor.java
+  ai_agent 191-195,214-222
+core/src/test/java/com/alibaba/nacos/core/cluster/ServerMemberManagerTest.java
+  ai_agent 167-188
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "a39a90692e1d5ffa0808f1718a055e4c55b7b937",
+  "prompts": {}
+}
