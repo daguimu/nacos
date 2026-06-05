@@ -1,0 +1,17 @@
+api/src/test/java/com/alibaba/nacos/api/naming/utils/NamingUtilsTest.java
+  ai_agent 195,234-242,247
+client/src/test/java/com/alibaba/nacos/client/naming/NacosNamingServiceTest.java
+  ai_agent 197,210,225,383,396
+api/src/main/java/com/alibaba/nacos/api/naming/utils/NamingUtils.java
+  ai_agent 178-181
+naming/src/main/java/com/alibaba/nacos/naming/remote/rpc/handler/InstanceRequestHandler.java
+  ai_agent 21,28,85-89
+naming/src/test/java/com/alibaba/nacos/naming/remote/rpc/handler/InstanceRequestHandlerTest.java
+  ai_agent 26-27,34,37,54-58,66,85-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "e3979be1402d709020e68021973dc57c64c0d830",
+  "prompts": {}
+}
