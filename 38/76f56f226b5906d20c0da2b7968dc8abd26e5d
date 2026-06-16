@@ -1,0 +1,11 @@
+naming/src/main/java/com/alibaba/nacos/naming/remote/rpc/handler/InstanceRequestHandler.java
+  ai_agent 85-89
+api/src/main/java/com/alibaba/nacos/api/naming/utils/NamingUtils.java
+  ai_agent 178
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "3876f56f226b5906d20c0da2b7968dc8abd26e5d",
+  "prompts": {}
+}
