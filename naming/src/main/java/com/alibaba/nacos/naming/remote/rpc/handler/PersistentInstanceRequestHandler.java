@@ -82,8 +82,13 @@ public class PersistentInstanceRequestHandler
     }
     
     private InstanceResponse registerInstance(Service service, PersistentInstanceRequest request,
-        RequestMeta meta) {
+        RequestMeta meta) throws NacosException {
         Instance instance = request.getInstance();
+        if (null == instance) {
+            throw new NacosException(NacosException.INVALID_PARAM,
+                "Required parameter 'instance' is missing.");
+        }
+        instance.validate();
         String clientId = IpPortBasedClient.getClientId(instance.toInetAddr(), false);
         clientOperationService.registerInstance(service, instance, clientId);
         NotifyCenter.publishEvent(new RegisterInstanceTraceEvent(System.currentTimeMillis(),
@@ -94,8 +99,12 @@ public class PersistentInstanceRequestHandler
     }
     
     private InstanceResponse deregisterInstance(Service service, PersistentInstanceRequest request,
-        RequestMeta meta) {
+        RequestMeta meta) throws NacosException {
         Instance instance = request.getInstance();
+        if (null == instance) {
+            throw new NacosException(NacosException.INVALID_PARAM,
+                "Required parameter 'instance' is missing.");
+        }
         String clientId = IpPortBasedClient.getClientId(instance.toInetAddr(), false);
         clientOperationService.deregisterInstance(service, instance, clientId);
         NotifyCenter.publishEvent(new DeregisterInstanceTraceEvent(System.currentTimeMillis(),
