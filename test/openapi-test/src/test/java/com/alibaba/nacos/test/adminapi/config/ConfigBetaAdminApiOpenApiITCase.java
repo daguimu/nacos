@@ -34,7 +34,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *     <li>Boundary/validation: omitted namespace uses public, beta rule is generated from {@code betaIps}, and
  *     {@code dataId}/{@code groupName} are required.</li>
  *     <li>Exception/error handling: absent beta configs return HTTP 404 with the v3 {@code Result} error envelope
- *     instead of HTTP 500.</li>
+ *     instead of HTTP 500, and stopping beta for a config that has no beta record is a graceful success rather than
+ *     a {@code SERVER_ERROR}.</li>
  * </ul>
  *
  * @author xiweng.yy
@@ -74,5 +75,16 @@ public class ConfigBetaAdminApiOpenApiITCase extends ConfigAdminApiBaseITCase {
                 400, ErrorCode.PARAMETER_MISSING, "groupName");
         assertError(getRaw(ADMIN_CONFIG_BETA_PATH, configQuery(dataId, groupName, "")), 404,
                 ErrorCode.RESOURCE_NOT_FOUND, "Config is not in beta");
+    }
+
+    @Test
+    public void testStopBetaOnConfigWithoutBetaReturnsSuccess() throws Exception {
+        // Stopping beta for a config that has no beta record must be a graceful success, not a
+        // SERVER_ERROR. The embedded (Derby) gray-delete path previously dereferenced the missing
+        // gray record, so stop-beta returned "remove beta data error"; this guards that path.
+        String dataId = randomDataId("beta-absent");
+        String groupName = randomGroupName("beta-absent");
+        JsonNode stopped = deleteJsonOk(ADMIN_CONFIG_BETA_PATH, configQuery(dataId, groupName, ""));
+        assertTrue(stopped.get("data").asBoolean(), stopped.toString());
     }
 }

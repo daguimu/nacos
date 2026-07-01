@@ -236,6 +236,7 @@ public class EmbeddedConfigInfoGrayPersistServiceImpl implements ConfigInfoGrayP
                     "expected config info[dataid:{}, group:{}, tenent:{}] but not found.", dataId,
                     group, tenant);
             }
+            return;
         }
         
         ConfigInfoGrayMapper configInfoGrayMapper =

@@ -48,6 +48,7 @@ import java.util.List;
 
 import static com.alibaba.nacos.config.server.service.repository.ConfigRowMapperInjector.CONFIG_INFO_GRAY_WRAPPER_ROW_MAPPER;
 import static com.alibaba.nacos.config.server.service.repository.ConfigRowMapperInjector.CONFIG_INFO_STATE_WRAPPER_ROW_MAPPER;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -395,14 +396,14 @@ public class EmbeddedConfigInfoGrayPersistServiceImplTest {
     }
     
     @Test
-    void testRemoveConfigInfoGrayThrowsWhenOldGrayMissing() {
+    void testRemoveConfigInfoGrayReturnsWhenGrayMissing() {
         when(databaseOperate.queryOne(anyString(),
             eq(new Object[] {"dataId", "group", StringUtils.EMPTY, StringUtils.EMPTY}),
             eq(CONFIG_INFO_GRAY_WRAPPER_ROW_MAPPER))).thenReturn(null);
         
-        assertThrows(NullPointerException.class,
-            () -> embeddedConfigInfoGrayPersistService.removeConfigInfoGray(
-                "dataId", "group", null, "", "srcIp", "srcUser"));
+        assertDoesNotThrow(() -> embeddedConfigInfoGrayPersistService.removeConfigInfoGray(
+            "dataId", "group", null, "", "srcIp", "srcUser"));
+        Mockito.verifyNoInteractions(historyConfigInfoPersistService);
     }
     
     @Test
