@@ -66,6 +66,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +77,7 @@ import java.util.zip.ZipOutputStream;
 
 import org.springframework.core.env.StandardEnvironment;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -595,6 +597,23 @@ class SkillOperationServiceImplTest {
             () -> uploadSkill(namespaceId, zipBytes, false));
         
         assertEquals(NacosException.CONFLICT, exception.getErrCode());
+    }
+    
+    @Test
+    void testBatchPrecheckUploadSkillHandlesNullElementGracefully() throws NacosException {
+        SkillUploadPrecheckRequest valid = new SkillUploadPrecheckRequest();
+        valid.setNamespaceId("test-namespace");
+        valid.setSkillName("test-skill");
+        valid.setParsedVersion("2.3");
+        valid.setVersionSource("SKILL.md frontmatter");
+        when(aiResourcePersistService.find(eq("test-namespace"), eq("test-skill"), anyString()))
+            .thenReturn(null);
+        
+        List<SkillUploadPrecheckResult> results = assertDoesNotThrow(
+            () -> skillOperationService.batchPrecheckUploadSkill(Arrays.asList(valid, null)));
+        
+        assertEquals(2, results.size());
+        assertEquals(SkillUploadPrecheckResult.STATUS_FORBIDDEN, results.get(1).getStatus());
     }
     
     @Test

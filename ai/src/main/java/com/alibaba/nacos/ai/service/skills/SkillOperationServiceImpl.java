@@ -204,6 +204,10 @@ public class SkillOperationServiceImpl implements SkillOperationService {
      */
     private SkillUploadPrecheckResult precheckUploadSkill(SkillUploadPrecheckRequest request)
         throws NacosException {
+        if (request == null) {
+            throw new NacosApiException(NacosException.INVALID_PARAM, ErrorCode.PARAMETER_MISSING,
+                "Precheck request is required");
+        }
         String name = StringUtils.trim(request.getSkillName());
         if (StringUtils.isBlank(name)) {
             throw new NacosApiException(NacosException.INVALID_PARAM, ErrorCode.PARAMETER_MISSING,
