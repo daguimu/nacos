@@ -1,0 +1,11 @@
+ai/src/test/java/com/alibaba/nacos/ai/service/skills/SkillOperationServiceImplTest.java
+  ai_agent 69,80,602-616
+ai/src/main/java/com/alibaba/nacos/ai/service/skills/SkillOperationServiceImpl.java
+  ai_agent 207-210
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "d2abb1fba5ef09d309b1a2e2bd4eda5af3b799f5",
+  "prompts": {}
+}
