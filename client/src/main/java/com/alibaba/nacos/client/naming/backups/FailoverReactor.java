@@ -51,9 +51,9 @@ import static com.alibaba.nacos.client.utils.LogUtils.NAMING_LOGGER;
  */
 public class FailoverReactor implements Closeable {
     
-    private Map<String, ServiceInfo> serviceMap = new ConcurrentHashMap<>();
+    private volatile Map<String, ServiceInfo> serviceMap = new ConcurrentHashMap<>();
     
-    private boolean failoverSwitchEnable;
+    private volatile boolean failoverSwitchEnable;
     
     private final ServiceInfoHolder serviceInfoHolder;
     
