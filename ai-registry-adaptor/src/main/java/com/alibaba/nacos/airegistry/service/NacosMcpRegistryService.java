@@ -36,6 +36,7 @@ import com.alibaba.nacos.api.model.Page;
 import com.alibaba.nacos.api.model.response.Namespace;
 import com.alibaba.nacos.common.utils.CollectionUtils;
 import com.alibaba.nacos.common.utils.StringUtils;
+import com.alibaba.nacos.common.utils.VersionUtils;
 import com.alibaba.nacos.core.service.NamespaceOperationService;
 import com.alibaba.nacos.airegistry.form.ListServerForm;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -205,7 +206,9 @@ public class NacosMcpRegistryService {
             McpServerDetailInfo mcpServerDetail =
                 mcpServerOperationService.getMcpServerDetail(namespaceId, null, serverName, null);
             List<ServerVersionDetail> allVersions = mcpServerDetail.getAllVersions();
-            allVersions.sort(Comparator.comparing(ServerVersionDetail::getVersion));
+            allVersions.sort(
+                Comparator.comparing(ServerVersionDetail::getVersion,
+                    VersionUtils::compareSemverVersion));
             List<ServerResponse> serverResponses = allVersions.stream().map((server) -> {
                 try {
                     return mcpServerOperationService.getMcpServerDetail(namespaceId, null,

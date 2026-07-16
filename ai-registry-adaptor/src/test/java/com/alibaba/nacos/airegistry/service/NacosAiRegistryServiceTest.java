@@ -359,7 +359,36 @@ class NacosAiRegistryServiceTest {
         assertEquals("1.0.0", result.getServers().get(0).getServer().getVersion());
         assertEquals("2.0.0", result.getServers().get(1).getServer().getVersion());
     }
-    
+
+    @Test
+    void getServerVersionsSortsBySemanticVersionNotLexicographically() throws NacosException {
+        McpServerDetailInfo detail =
+            mockMcpServerDetailInfo("id", RANDOM_NAMESPACE_ID, true, false);
+        ServerVersionDetail v110 = new ServerVersionDetail();
+        v110.setVersion("1.10.0");
+        ServerVersionDetail v19 = new ServerVersionDetail();
+        v19.setVersion("1.9.0");
+        detail.setAllVersions(new LinkedList<>(List.of(v110, v19)));
+        when(mcpServerOperationService.getMcpServerDetail(RANDOM_NAMESPACE_ID, null,
+            "mockMcpServer", null)).thenReturn(detail);
+        McpServerDetailInfo d19 =
+            mockMcpServerDetailInfo("id", RANDOM_NAMESPACE_ID, true, false);
+        d19.getVersionDetail().setVersion("1.9.0");
+        when(mcpServerOperationService.getMcpServerDetail(RANDOM_NAMESPACE_ID, null,
+            "mockMcpServer", "1.9.0")).thenReturn(d19);
+        McpServerDetailInfo d110 =
+            mockMcpServerDetailInfo("id", RANDOM_NAMESPACE_ID, true, false);
+        d110.getVersionDetail().setVersion("1.10.0");
+        when(mcpServerOperationService.getMcpServerDetail(RANDOM_NAMESPACE_ID, null,
+            "mockMcpServer", "1.10.0")).thenReturn(d110);
+
+        McpRegistryServerList result =
+            mcpRegistryService.getServerVersions(RANDOM_NAMESPACE_ID, "mockMcpServer");
+
+        assertEquals("1.9.0", result.getServers().get(0).getServer().getVersion());
+        assertEquals("1.10.0", result.getServers().get(1).getServer().getVersion());
+    }
+
     @Test
     void getServerVersionsHandlesErrors() throws NacosException {
         when(mcpServerOperationService.getMcpServerDetail(RANDOM_NAMESPACE_ID, null, "missing",
